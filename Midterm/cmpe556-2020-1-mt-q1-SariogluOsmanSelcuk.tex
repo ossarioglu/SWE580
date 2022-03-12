@@ -1,0 +1,221 @@
+% !TEX spellcheck = en_US
+
+\documentclass[11pt,a4,twocolumn]{article}
+%\documentclass[10pt,journal,compsoc]{IEEEtran}
+%\documentclass[11pt, oneside]{amsart}   	% use "amsart" instead of "article" for 
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V
+\newcommand{\hSoFunctions}[2]{\ensuremath{#2^{#1}}} % set of functions from 1to2
+%\newcommand{\hAbs}[1]{\ensuremath{\left \lvert \, #1 \, \right \rvert} } % |x|
+%\newcommand{\hAbs}[1]{\ensuremath{\left \lvert  #1  \right \rvert} } % |x|
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB  Packages v2020-11-21
+	\usepackage[utf8]{inputenc} % To use Unicode characters
+	\usepackage[iso]{datetime}
+	\newcommand{\hbTimeStamp}{{\color{red}--Draft-- v\today/\currenttime}} % version
+	%	\usepackage{etex}
+	\usepackage{amssymb}
+	\usepackage{enumitem}
+	
+	\usepackage[a4paper]{geometry}
+	
+	\usepackage{xcolor}
+	% black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, 
+	% magenta, olive, orange, pink, purple, red, teal, violet, white, yellow
+		\definecolor{darkred}{rgb}{0.8,0.1,0.1}
+		\definecolor{darkgreen}{rgb}{0,0.5,0}
+		\definecolor{darkblue}{rgb}{0,0,0.5}
+
+	\usepackage[colorlinks=true,linkcolor=red,urlcolor=blue,citecolor=red]%
+		{hyperref}
+	\usepackage{graphicx,epstopdf}
+	% \graphicspath{{fig}}
+	\graphicspath{{../common/figures/}}
+	% \DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+	% \DeclareGraphicsRule{.tif}{png}{.png}%
+	%	{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+%	\usepackage{subfigure}
+%	\usepackage{subfig}
+	\usepackage{subcaption}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB Math v2020-11-21
+	\usepackage{amsmath, amssymb,amsfonts,amsthm}
+	\newcommand{\hDefined}[1]{\textcolor{darkred}{\textit{#1}}}	
+	\newcommand{\hVec}[1]{\mathbf{#1}}	 
+	\newcommand{\hAbs}[1]{\ensuremath{\left \lvert \, #1 \, \right \rvert} } % |x|
+	\newcommand{\hMat}[1]{\mathbf{#1}}
+	\newcommand{\hArgmin}[2]{\underset{#1}{\operatorname{arg \, min}}\;#2}
+	\newcommand{\hArgmax}[2]{\underset{#1}{\operatorname{arg \, max}}\;#2}
+	%
+	\theoremstyle{plain}
+	\newtheorem{thm}{Theorem}[section]
+	\newtheorem{lem}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem*{cor}{Corollary}
+	\theoremstyle{definition}
+	\newtheorem{defn}{Definition}[section]
+	\newtheorem{conj}{Conjecture}[section]
+	\newtheorem{exmp}{Example}[section]
+	\theoremstyle{remark}
+	\newtheorem*{rem}{Remark}
+	\newtheorem*{note}{Note}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB Common Declarations v20200421
+%	\newcommand{\hbTimeStamp}{{\color{red}--Draft-- v\today/\currenttime}} % version
+	%
+	\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+	\newcommand{\refeq}[1]{Eq.~\ref{#1}}
+	\newcommand{\reftbl}[1]{Table~\ref{#1}}
+	\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+	\newcommand{\refcite}[1]{Ref~\cite{#1}}
+	\newcommand{\refalg}[1]{Algorithm~\ref{#1}}
+	\newcommand{\reflst}[1]{List.~\ref{#1}}  % code listing
+	%
+	\newcommand{\refthm}[1]{Theorem~\ref{#1}}
+	\newcommand{\refthmA}[2]{\refthm{#1}(\ref{#2}}
+	\newcommand{\reflem}[1]{Lemma~\ref{#1}}
+	\newcommand{\refdef}[1]{Definition~\ref{#1}}
+	\newcommand{\refexmp}[1]{Example~\ref{#1}}
+	%
+	\newcommand{\hbQuote}[1]{{\small \textsf{``#1''}}}
+	%
+	\newcommand{\hbCode}[1]{\texttt{#1}}
+	%
+	\newcommand{\hbIdea}[1]{{\color{olive}{\scriptsize [{#1}]}}}
+	\newcommand{\hbFootnote}[2]{\footnote{{\color{red} @#1 : }#2}}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+
+\title{
+	SWE 580 Midterm Question 1\\
+	SWE580 Complex Networks Spring 2021\\
+}
+\author{Osman Selçuk Sarıoğlu}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Clustering Coefficient for 1-Dimensional Lattice}
+
+In a one-dimensional lattice network having $N$ vertex, the nodes are arranged in a circular configuration and each has $k = 2r$ links, which are linked to their $r$ nearest neighbors.We calculate clustering coefficient $(C)$, by getting average of the local clustering coefficients  $(C_i)$ for all node $i$, using
+the general formula:
+
+\[
+C = \frac{1}{N} \sum_{i=1}^N C_i
+\]
+
+\par
+\noindent Local clustering coefficients  $(C_i)$ for node $i$, is found by dividing number of edges, and all possible edges in the lattice network. 
+
+\begin{align*}
+C_i = \frac{\text{ Number of Edges} }{\text{Number of All Possible Edges} } 
+\end{align*}
+
+\par
+\noindent Since this is a ring lattice, every vertex is connected to the nearest $r$ nodes on the left and $r$ nodes on the right so, number of edges are degree of vertex, $k$ : 
+
+\[
+k = 2r
+\]
+
+\par
+\noindent For any vertex $i$, there is for sure a left and right connection. If we divide the circle into 2 equal parts referencing vertex $i$, we can use formula below in order to find the number of vertices at the left half of ring, 
+
+\[
+n_L = N \text{ div  } 2 
+\]
+
+\par
+\noindent Number of all possible edges at left half of circle, $m_L$, can be calculated by combination of any 2 vertices in left half-of the circle: 
+\[
+m_L = C ( n_L, 2) 
+\]
+
+\par
+\noindent Since the left and right halves would have same number of vertices, number of all possible edges at right half of circle, $m_R$, will be equal to  $m_L$. Therefore, number of all possible edges, $M$, will be :
+
+\begin{align*}
+M 	& = m_L + m_R \\
+	& = 2 m_L \\
+	& = 2 C ( n_L, 2) \\
+	& = 2 \frac{n_L (n_L - 1)}{2}
+	& = n_L (n_L - 1) \\
+\end{align*}
+
+\par 
+\noindent By consolidating the formula for local clustering coefficient for vertex $i$, $(C_i)$, the formula will be : 
+
+\begin{align*}
+C_i 		 = \frac{\text{ Number of Edges} }{\text{Number of All Possible Edges} } 
+		& = \frac{k}{M} \\
+\\
+C_i 		  = \frac{2r}{(N \text{ div  } 2) ( (N \text{ div  } 2) - 1)}
+\end{align*}
+
+\par 
+\noindent For lattice networks, the local clustering coefficient, $C_i$, is the same for each vertex $i$. In this case, formula for clustering coefficient $(C)$, can be consolidated as follows:
+
+\begin{align*}
+C 		= \frac{1}{N} \sum_{i=1}^N C_i \\
+		= \frac{1}{N} N C_i 
+	 	= C_i \\
+\\
+C		  = \frac{2r}{(N \text{ div  } 2) ( (N \text{ div  } 2) - 1)}
+\end{align*}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Clustering coefficients for various combinations of $N$ and $r$}
+
+Table 1 shows some sample results for clustering coefficient in different combinations of $N$ and $r$. 
+
+\begin{table} [h]
+\begin{tabular}{|c|c|cc|r|}
+\hline
+No & $N$ & $r$ & $k$ & $C$ \\
+\hline
+1 & 10 & 2 & 4& 0.20000 \\
+2 & 10 & 4 & 8 &0.40000 \\
+3 & 25 & 2 & 4 &0.02782 \\
+4 & 25 & 5 & 10&0.06956 \\
+5 & 25 & 8 & 16&0.11130 \\
+6 & 50 & 2 & 4&0.00666 \\
+7 & 50 & 5 & 10&0.01666 \\
+8 & 50 & 10 & 20&0.03333 \\
+9 & 50 & 15 & 30&0.05000 \\
+10 & 100 & 15 &30&0.01224 \\
+11 & 100 & 20 &40&0.01632 \\
+12 & 100 & 35 &70&0.02857 \\
+\hline
+\end{tabular}
+\caption{Example: Sample results for various combinations of $N$ and $r$}
+\end{table}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+\end{document}  

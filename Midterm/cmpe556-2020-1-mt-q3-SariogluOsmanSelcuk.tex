@@ -1,0 +1,223 @@
+% !TEX spellcheck = en_US
+
+\documentclass[11pt,a4,twocolumn]{article}
+%\documentclass[10pt,journal,compsoc]{IEEEtran}
+%\documentclass[11pt, oneside]{amsart}   	% use "amsart" instead of "article" for 
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V
+\newcommand{\hSoFunctions}[2]{\ensuremath{#2^{#1}}} % set of functions from 1to2
+%\newcommand{\hAbs}[1]{\ensuremath{\left \lvert \, #1 \, \right \rvert} } % |x|
+%\newcommand{\hAbs}[1]{\ensuremath{\left \lvert  #1  \right \rvert} } % |x|
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB  Packages v2020-11-21
+	\usepackage[utf8]{inputenc} % To use Unicode characters
+	\usepackage[iso]{datetime}
+	\newcommand{\hbTimeStamp}{{\color{red}--Draft-- v\today/\currenttime}} % version
+	%	\usepackage{etex}
+	\usepackage{amssymb}
+	\usepackage{enumitem}
+	
+	\usepackage[a4paper]{geometry}
+	
+	\usepackage{xcolor}
+	% black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, 
+	% magenta, olive, orange, pink, purple, red, teal, violet, white, yellow
+		\definecolor{darkred}{rgb}{0.8,0.1,0.1}
+		\definecolor{darkgreen}{rgb}{0,0.5,0}
+		\definecolor{darkblue}{rgb}{0,0,0.5}
+
+	\usepackage[colorlinks=true,linkcolor=red,urlcolor=blue,citecolor=red]%
+		{hyperref}
+	\usepackage{graphicx,epstopdf}
+	% \graphicspath{{fig}}
+	\graphicspath{{../common/figures/}}
+	% \DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+	% \DeclareGraphicsRule{.tif}{png}{.png}%
+	%	{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+%	\usepackage{subfigure}
+%	\usepackage{subfig}
+	\usepackage{subcaption}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB Math v2020-11-21
+	\usepackage{amsmath, amssymb,amsfonts,amsthm}
+	\newcommand{\hDefined}[1]{\textcolor{darkred}{\textit{#1}}}	
+	\newcommand{\hVec}[1]{\mathbf{#1}}	 
+	\newcommand{\hAbs}[1]{\ensuremath{\left \lvert \, #1 \, \right \rvert} } % |x|
+	\newcommand{\hMat}[1]{\mathbf{#1}}
+	\newcommand{\hArgmin}[2]{\underset{#1}{\operatorname{arg \, min}}\;#2}
+	\newcommand{\hArgmax}[2]{\underset{#1}{\operatorname{arg \, max}}\;#2}
+	%
+	\theoremstyle{plain}
+	\newtheorem{thm}{Theorem}[section]
+	\newtheorem{lem}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem*{cor}{Corollary}
+	\theoremstyle{definition}
+	\newtheorem{defn}{Definition}[section]
+	\newtheorem{conj}{Conjecture}[section]
+	\newtheorem{exmp}{Example}[section]
+	\theoremstyle{remark}
+	\newtheorem*{rem}{Remark}
+	\newtheorem*{note}{Note}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB Common Declarations v20200421
+%	\newcommand{\hbTimeStamp}{{\color{red}--Draft-- v\today/\currenttime}} % version
+	%
+	\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+	\newcommand{\refeq}[1]{Eq.~\ref{#1}}
+	\newcommand{\reftbl}[1]{Table~\ref{#1}}
+	\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+	\newcommand{\refcite}[1]{Ref~\cite{#1}}
+	\newcommand{\refalg}[1]{Algorithm~\ref{#1}}
+	\newcommand{\reflst}[1]{List.~\ref{#1}}  % code listing
+	%
+	\newcommand{\refthm}[1]{Theorem~\ref{#1}}
+	\newcommand{\refthmA}[2]{\refthm{#1}(\ref{#2}}
+	\newcommand{\reflem}[1]{Lemma~\ref{#1}}
+	\newcommand{\refdef}[1]{Definition~\ref{#1}}
+	\newcommand{\refexmp}[1]{Example~\ref{#1}}
+	%
+	\newcommand{\hbQuote}[1]{{\small \textsf{``#1''}}}
+	%
+	\newcommand{\hbCode}[1]{\texttt{#1}}
+	%
+	\newcommand{\hbIdea}[1]{{\color{olive}{\scriptsize [{#1}]}}}
+	\newcommand{\hbFootnote}[2]{\footnote{{\color{red} @#1 : }#2}}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+
+\title{
+	Midterm-Q3\\
+	Complex Networks Spring 2021\\
+}
+\author{Osman Selçuk Sarıoğlu}
+\date{2021-05-30}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{The Perron-Frobenius Theorem}
+
+\par
+The Perron–Frobenius theorem was derived by Oskar Perron  and later generalized by Georg Frobenius. This theorem asserts that a real square matrix with positive entries has a unique largest real eigenvalue and that the corresponding eigenvector can be chosen to have strictly positive components, and also asserts a similar statement for certain classes of non-negative matrices. 
+\par
+The theorem was proved for matrices with strictly positive entries by Perron  in 1907 and extended by Frobenius to matrices which have non-negative entries and are irreducible in 1912.
+\par
+There are widely used application of this theorem such as at probability theory for Markov chains, dynamical systems, economics, demography of population, social networking and internet search engines $^{[1]}$.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Positive Matrices}
+
+Let  $\mathbf{A}$ be a matrix having entries $a_{ij}$.
+
+ $\mathbf{A}$ is said to be positive matrix if all entries are positive. 
+
+i.e., $a_{ij}$ $>$ 0 where $a_{ij}$ represents the $(i, j)$th entry of $A$
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Primitive Matrices}
+
+Let  $\mathbf{A}$ be a nonnegative matrix whose entries $a_{ij}$ are nonnegative numbers. 
+
+ $\mathbf{A}$ is said to be primitive if, for some integer $m_0$, $A^{m_0}$ is a positive matrix. 
+
+i.e., $a^{(m_0)}_{ij}$ $>$ 0 where $a^{(m_0)}_{ij}$ represents the $(i, j)$th entry of $A^{m_0}$
+
+For example, the square matrix  $\mathbf{P}$ below is primitive for all $p_{i}$ $>$ 0, since $P_2$ is a positive matrix. $^{[2]}$.
+
+\[
+\mathbf{P} =
+\begin{bmatrix}
+p_{1} &  p_{2}  & \cdots & p_{m}\\
+1 & 0 & \cdots & 0 \\
+1 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots\\
+1 & 0 & \cdots & 0
+\end{bmatrix}
+\] 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Irreducible Matrices}
+
+A non-negative matrix square $\mathbf{A}$ is called \textbf{irreducible} if for any $i, j$ there is a
+$k = k(i, j)$ such that $A^k_{ij}$ $>$ 0. In graph perspective, this means any node  $i, j$ is connected to each other in $k$ steps.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Spectral Radius}
+
+The spectral radius of a matrix  $\mathbf{A}$ represents the maximum of the absolute values of the eigenvalues of $A$. An
+eigenvalue and eigenvector pair of the matrix $A$ satisfies the equation $A$\underline{$x$} = $\lambda$\underline{$x$}, where $\lambda$ and \underline{$x$} represent the eigenvalue and the corresponding eigenvector, respectively.Thus, spectral radius of $A$, $\rho$($A$), is as follows: $^{[2]}$
+
+\[
+\rho(A) = \underset{i}{ \max} \, \hAbs{\lambda_i(A)}
+\] 
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Statement of Theorem}
+
+Let  $\mathbf{A}$ be a an irreducible matrix with non-negative entries, i.e.  $a_{ij}$ $\in$ $\mathbb{R}_{\geq 0}$. Then, $^{[1]}$, $^{[3]}$
+
+
+\begin{enumerate}
+\item There exists a unique eigenvalue $pf$, called Perron root or the Perron–Frobenius eigenvalue, of $A$ , where $pf$ $\in$ $\mathbb{R}_{\geq 0}$, whose absolute value is bigger than those of other eigenvalues :  \textbf{The leading eigenvalue} 
+\item Up to scalars, there is a unique eigenvector $PF$ with entries from  $\mathbb{R}_{\geq 0}$, and it has eigenvalue $pf$ :  \textbf{The leading eigenvector} 
+\item The only eigenvectors with the same absolute value of $pf$ are on the same circle of $pf$ :  \textbf{Symmetry of eigenvalue} 
+\item  $pf$ is an eigenvalue of $A$ and any other eigenvalue $\lambda$ (possibly complex) in absolute value is strictly smaller than $pf$ , \hAbs{\lambda} $<$ $pf$. Thus, the spectral radius $\rho$($A$) is equal to $pf$. 
+\item $pf$ is a simple root of the characteristic polynomial of $A$. Consequently, the eigenspace associated to $pf$ is one-dimensional.  (The same is true for the left eigenspace, i.e., the eigenspace for $\mathbf{A}^{\top}$ , the transpose of $\mathbf{A}$.)
+
+\end{enumerate}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Applications of Theorem}
+
+This theorem is used various studies. Some of the well-know studies are:
+
+
+
+\begin{enumerate}
+\item \textbf{The Leslie model of population growth} : In 1945 Leslie introduced a model for the growth of a stratified population. The population to consider consists of the females of a species, and the stratification is by age group. 
+\item \textbf{Markov Chains} : A non-negative matrix $\mathbf{M}$, a stochastic matrix, having each of the row sums equal to 1
+\item \textbf{The Google ranking} : Pagerank is the algorithm to define the ranking of webpages based on "importance", which is defined by highest probability to be clicked from previous pages (higher number of links from other pages)
+\end{enumerate}
+
+
+
+
+\textbf{References.}
+{\footnotesize [1] Wikipedia, \textit{Perron–Frobenius theorem}, \url{https://en.wikipedia.org/wiki/Perron-Frobenius_theorem} }
+{\footnotesize [2] S. Unnikrishna Pillai, Torsten Suel, and Seunghun Cha, \textit{The Perron-Frobenius Theorem [Some of its applications]}, IEEE SIGNAL PROCESSING MAGAZINE, March 2005 }
+{\footnotesize [3] VisualMath, \textit{What is...the Perron-Frobenius theorem?}, YouTube, \url{https://www.youtube.com/watch?v=jMmagF4IWrY&t} }
+
+
+
+
+
+
+\end{document}  

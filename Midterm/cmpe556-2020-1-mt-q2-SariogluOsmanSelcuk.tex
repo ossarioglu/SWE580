@@ -1,0 +1,301 @@
+% !TEX spellcheck = en_US
+
+\documentclass[11pt,a4,twocolumn]{article}
+%\documentclass[10pt,journal,compsoc]{IEEEtran}
+%\documentclass[11pt, oneside]{amsart}   	% use "amsart" instead of "article" for 
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V
+\newcommand{\hSoFunctions}[2]{\ensuremath{#2^{#1}}} % set of functions from 1to2
+%\newcommand{\hAbs}[1]{\ensuremath{\left \lvert \, #1 \, \right \rvert} } % |x|
+%\newcommand{\hAbs}[1]{\ensuremath{\left \lvert  #1  \right \rvert} } % |x|
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB  Packages v2020-11-21
+	\usepackage[utf8]{inputenc} % To use Unicode characters
+	\usepackage[iso]{datetime}
+	\newcommand{\hbTimeStamp}{{\color{red}--Draft-- v\today/\currenttime}} % version
+	%	\usepackage{etex}
+	\usepackage{amssymb}
+	\usepackage{enumitem}
+	
+	\usepackage[a4paper]{geometry}
+	
+	\usepackage{xcolor}
+	% black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, 
+	% magenta, olive, orange, pink, purple, red, teal, violet, white, yellow
+		\definecolor{darkred}{rgb}{0.8,0.1,0.1}
+		\definecolor{darkgreen}{rgb}{0,0.5,0}
+		\definecolor{darkblue}{rgb}{0,0,0.5}
+
+	\usepackage[colorlinks=true,linkcolor=red,urlcolor=blue,citecolor=red]%
+		{hyperref}
+	\usepackage{graphicx,epstopdf}
+	% \graphicspath{{fig}}
+	\graphicspath{{../common/figures/}}
+	% \DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+	% \DeclareGraphicsRule{.tif}{png}{.png}%
+	%	{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+%	\usepackage{subfigure}
+%	\usepackage{subfig}
+	\usepackage{subcaption}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB Math v2020-11-21
+	\usepackage{amsmath, amssymb,amsfonts,amsthm}
+	\newcommand{\hDefined}[1]{\textcolor{darkred}{\textit{#1}}}	
+	\newcommand{\hVec}[1]{\mathbf{#1}}	 
+	\newcommand{\hAbs}[1]{\ensuremath{\left \lvert \, #1 \, \right \rvert} } % |x|
+	\newcommand{\hMat}[1]{\mathbf{#1}}
+	\newcommand{\hArgmin}[2]{\underset{#1}{\operatorname{arg \, min}}\;#2}
+	\newcommand{\hArgmax}[2]{\underset{#1}{\operatorname{arg \, max}}\;#2}
+	%
+	\theoremstyle{plain}
+	\newtheorem{thm}{Theorem}[section]
+	\newtheorem{lem}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem*{cor}{Corollary}
+	\theoremstyle{definition}
+	\newtheorem{defn}{Definition}[section]
+	\newtheorem{conj}{Conjecture}[section]
+	\newtheorem{exmp}{Example}[section]
+	\theoremstyle{remark}
+	\newtheorem*{rem}{Remark}
+	\newtheorem*{note}{Note}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+
+
+
+%: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V HB Common Declarations v20200421
+%	\newcommand{\hbTimeStamp}{{\color{red}--Draft-- v\today/\currenttime}} % version
+	%
+	\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+	\newcommand{\refeq}[1]{Eq.~\ref{#1}}
+	\newcommand{\reftbl}[1]{Table~\ref{#1}}
+	\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+	\newcommand{\refcite}[1]{Ref~\cite{#1}}
+	\newcommand{\refalg}[1]{Algorithm~\ref{#1}}
+	\newcommand{\reflst}[1]{List.~\ref{#1}}  % code listing
+	%
+	\newcommand{\refthm}[1]{Theorem~\ref{#1}}
+	\newcommand{\refthmA}[2]{\refthm{#1}(\ref{#2}}
+	\newcommand{\reflem}[1]{Lemma~\ref{#1}}
+	\newcommand{\refdef}[1]{Definition~\ref{#1}}
+	\newcommand{\refexmp}[1]{Example~\ref{#1}}
+	%
+	\newcommand{\hbQuote}[1]{{\small \textsf{``#1''}}}
+	%
+	\newcommand{\hbCode}[1]{\texttt{#1}}
+	%
+	\newcommand{\hbIdea}[1]{{\color{olive}{\scriptsize [{#1}]}}}
+	\newcommand{\hbFootnote}[2]{\footnote{{\color{red} @#1 : }#2}}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ A
+
+	\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
+
+
+
+
+\title{
+	SWE 580 Midterm Question 2\\
+	SWE580 Complex Networks Spring 2021\\
+}
+\author{Osman Selçuk Sarıoğlu}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Question}
+
+Let $\mathbf{A}$ be the adjacency matrix of an undirected network and 
+$\mathbf{1}$ be the column vector whose elements are all 1. 
+In terms of these quantities write expressions for:
+\begin{enumerate}
+	
+	\item 
+	the vector $\mathbf{k}$ whose elements are the degrees $k_{i}$ of the vertices; 
+	
+	\item 
+	the number $m$ of edges in the network;
+	
+	\item 
+	the matrix $\mathbf{N}$ whose element $N_{ij}$ is equal to the number of common neighbors of vertices $i$
+	and $j$;
+	
+	\item 
+	the total number of triangles in the network, 
+	where a triangle means three vertices, 
+	each connected by edges to both of the others.
+	
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ V solution
+\section{Solution}
+
+\subsection{Solution for Q1.1}
+
+In an adjacency matrix, the value of element $N_{ij}$ equal to $1$ if there is a connection between vertices $i$ and $j$. In this condition, in order to find number of connections of vertex $i$, which is called the degrees  $k_{i}$ of the vertex  $i$, we need to sum up all $N_{ij}$ values for a a given vertex $i$.
+
+\par
+\noindent The vector $\mathbf{k}$ whose elements are the degrees $k_{i}$ of the vertices for a graph with $n$ vertices ; can be shown as a matrix below:
+
+\[
+k = 
+\begin{bmatrix}
+ k_{1} \\
+ k_{2} \\
+ k_{3} \\
+\vdots \\
+ k_{n} \\
+
+\end{bmatrix}
+\]
+
+\par
+\noindent The vector $\mathbf{k}$ can be calculated by matrix multiplication of $\mathbf{A}$ the adjacency matrix and 
+$\mathbf{1}$ the column vector. Expression for this calculation is below:
+
+\[
+k = A \times 1
+\]
+
+\[
+k = 
+\left[
+  \begin{array}{ccc}
+	 N_{1,1} & N_{1,2} & \ldots   N_{1,n}  \\
+	 N_{2,1} \\
+	 N_{3,1} \\
+	\vdots \\
+	 N_{n,1} \\
+  \end{array}
+\right]
+\begin{bmatrix}
+           $1$ \\
+           $1$ \\
+           $1$ \\
+           \vdots \\
+           $1$ \\
+\end{bmatrix} \\
+= 
+\begin{bmatrix}
+ k_{1} \\
+ k_{2} \\
+ k_{3} \\
+\vdots \\
+ k_{n} 
+\end{bmatrix}
+\]
+
+\subsection{Solution for Q1.2}
+
+The values of the elements of the vector $\mathbf{k}$ shows us number of edges from each vertex. Therefore, if we sum up the values of these elements, we can find number of all edges. However, since this is an undirected graph, we double count the same edge, $E_{ij}$, for  vertices $i$ and $j$.  The formula for the number $m$ of edges in the network would be:
+
+\[
+m= \frac{1}{2} \sum_{i=1}^n k_i\\
+\]
+
+\par
+\noindent Same formula can be shown with matrix calculation as follows:   
+
+\[
+m = \frac{1}{2} \times k^{T} \times 1
+\]
+
+\[
+m =  \frac{1}{2}
+\left[
+  \begin{array}{ccc}
+	 k_{1} & k_{2} & \ldots   k_{n}  \\
+  \end{array}
+\right]
+\begin{bmatrix}
+           $1$ \\
+           $1$ \\
+           $1$ \\
+           \vdots \\
+           $1$ \\
+\end{bmatrix} \\
+\]
+
+\subsection{Solution for Q1.3}
+
+In an undirected graph, for vertices $i$ and $j$, if there is a common neighbor $k$, then there should be both edges between $i$ to $k$, and $k$ to $j$. Therefore, in the adjacency matrix $\mathbf{A}$, the value of element $E_{ik}$ and $E_{kj}$ should both equal to 1. Then, multiplication of these values will be 1, as well. In order to find number of common neighbors of for vertices $i$ and $j$,  $N_{ij}$, we sum up this value for all $k$ in the graph. 
+\[
+N_{ij}=  \sum_{k=1}^n E_{ik}E_{kj}\\
+\]
+
+\par
+\noindent Actually, this represents a path with 2 length. Then, the formula to show this calculation will be as follows:
+
+\[
+N_{ij}=  \sum_{k=1}^n E_{ik}E_{kj}\\
+= 
+\begin{bmatrix}
+ A^2 \\
+\end{bmatrix}
+_{ij}
+\]
+
+\par
+\noindent The matrix $\mathbf{N}$ whose element $N_{ij}$ is equal to the number of common neighbors of vertices $i$
+	and $j$; could be shown as follows:
+
+\[
+N =  A \times A
+\]
+
+\subsection{Solution for Q1.4}
+
+In an undirected graph, for vertices $i$, $j$, if there is a path starting from $i$ to $j$ via vertices $k$ and $l$, there are edges between these vertices, so values of $E_{ik}$, $E_{kl}$,and $E_{lj}$ equals to 1. Therefore, the product $E_{ik}$$E_{kl}$$E_{lj}$ equals to 1. Similar to answer of Q1.3, here the length of path will be 3. Then, the formula for number of paths will be as follows:
+
+\[
+N_{ij}=  \sum_{k,l=1}^n E_{ik}E_{kl}E_{lj}\\
+= 
+\begin{bmatrix}
+ A^3 \\
+\end{bmatrix}
+_{ij}
+\]
+
+
+\par
+\noindent  From all these paths, any path starting from vertex $i$ and ends at the same vertex $i$ will create a triangle. Therefore $N_{ii}$ shows number of the triangles starting from vertex $i$. If we sum up $N_{ii}$ values for all $i$, the we can found total number of triangles in that graph,  $T$, by finding the trace of matrix $\mathbf{A^3}$, as follows:
+
+\[
+T =  \sum_{i=1}^n \begin{bmatrix}
+ A^3 \\
+\end{bmatrix}
+_{ii}\\
+= Tr A^3
+\]
+
+\par
+\noindent However, for the same triangle you can start from 3 different starting point and follow 2 different paths. For example, for the triangle between vertices 1,2,3, you can follow a path 1 $\rightarrow$ 2 $\rightarrow$ 3 $\rightarrow$ 1, or another path 1 $\rightarrow$ 3 $\rightarrow$ 2 $\rightarrow$ 1. Therefore, for the same triangles we count it 3 $\times$ 2 = 6 times at previous formula. In this case, number of triangles in undirected graph, $t$,  is calculated as follows: 
+
+\[
+t= \frac{T}{6} = \frac{Tr A^3}{6}
+\]
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+\end{document}
